@@ -1,20 +1,24 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,1,0" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,1,0" />
     <link rel="stylesheet" href="style.css">
     <title>Projeto de Chat</title>
 </head>
+
 <body>
     <section class="container">
 
         <section class="login">
-            <h2>Login</h2>
+            <div class="container-logo">
+                <img src="./assets//logoPonte.svg" alt="">
+            </div>
             <form class="login__form">
-                <!-- O required faz com que o usuario nao consiga dar enter com o campo vazio -->
-                <input type="text" class="login__input" placeholder="Seu Nome" required/>
+                <input type="text" class="login__input" placeholder="Seu Nome" required />
                 <button type="submit" class="login__button">Entrar</button>
             </form>
         </section>
@@ -24,10 +28,9 @@
             </section>
 
             <form class="chat__form">
-                <!-- O required faz com que o usuario nao consiga dar enter com o campo vazio -->
-                <input type="text" class="chat__input" placeholder="Digite uma mensagem" required/>
+                <input type="text" class="chat__input" placeholder="Digite uma mensagem" required />
                 <button type="submit" class="chat__button">
-                    <span class="material-symbols-outlined">send</span>                    
+                    <span class="material-symbols-outlined">send</span>
                 </button>
             </form>
         </section>
@@ -35,5 +38,5 @@
 
     <script src="scripts.js"></script>
 </body>
-</html>
 
+</html>
