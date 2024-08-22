@@ -12,7 +12,7 @@
 }
 
 body {
-  background: url(/frontend/assets/background2.png);
+  background: url(./assets/background2.png);
   background-repeat: no-repeat;
   color: #ffffff;
   background-position: center;
