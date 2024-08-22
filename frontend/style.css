@@ -13,7 +13,37 @@
 
 body {
   background: url(/frontend/assets/background2.png);
+  background-repeat: no-repeat;
   color: #ffffff;
+  background-position: center;
+}
+
+.header_message {
+  display: flex;
+  width: 100vw;
+  background-color: #fff;
+  padding: 0 5px;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid black;
+}
+
+.header_message .imgUser {
+  border-right: 1px solid black;
+}
+
+.header_message img {
+  margin-right: 5px;
+  padding: 2px;
+}
+
+.header_message > div {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  color: #000000;
+  align-content: center;
+  font-weight: 500;
 }
 
 .container {
@@ -76,7 +106,13 @@ body {
   color: #212121;
 }
 .login__button:hover {
-  background-color: #fff;
+  background-color: #25a6ce;
+  color: #ffffff;
+}
+
+.hours_send {
+  display: flex;
+  justify-content: end;
 }
 
 .chat {
@@ -130,7 +166,7 @@ body {
 
 .chat__button {
   border: none;
-  color: #000000;
+  color: #ffffff;
   cursor: pointer;
 }
 

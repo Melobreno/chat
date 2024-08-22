@@ -2,11 +2,6 @@
 const login = document.querySelector(".login");
 const loginForm = document.querySelector(".login__form");
 const loginInput = document.querySelector(".login__input");
-const horaInput = new Date();
-const horaEnvio = `${horaInput.getHours()}:${horaInput.getMinutes()} ${
-  horaInput.getHours() > 23 || horaInput.getHours() < 12 ? "AM" : "PM"
-}`;
-console.log(horaEnvio);
 
 // Chat elements
 const chat = document.querySelector(".chat");
@@ -23,33 +18,51 @@ const colors = [
   "gold",
 ];
 
+const formatHoraEnvio = (date) => {
+  return `${date.getHours()}:${date.getMinutes()} ${
+    date.getHours() >= 12 ? "PM" : "AM"
+  }`;
+};
+
 const user = { id: "", name: "", color: "" };
 
 let websocket;
 
-const creatMessageSelf = (content) => {
+const creatMessageSelf = (content, horaEnvio) => {
   const div = document.createElement("div");
+  const spanContent = document.createElement("span");
+  const spanHours = document.createElement("span");
 
   div.classList.add("message__self");
-  div.innerHTML = content;
+  spanHours.classList.add("hours_send");
 
+  spanContent.innerHTML = content;
+  spanHours.innerHTML = horaEnvio;
+
+  div.appendChild(spanContent);
+  div.appendChild(spanHours);
   return div;
 };
 
-const creatMessageOther = (content, sender, senderColor) => {
+const creatMessageOther = (content, sender, senderColor, horaEnvio) => {
   const div = document.createElement("div");
-  const span = document.createElement("span");
+  const spanSender = document.createElement("span");
+  const spanContent = document.createElement("span");
+  const spanHours = document.createElement("span");
 
   div.classList.add("message__other");
+  spanSender.classList.add("message__sender");
+  spanContent.classList.add("message__content");
+  spanHours.classList.add("hours_send");
+  spanSender.style.color = senderColor;
 
-  div.classList.add("message__self");
-  span.classList.add("message__sender");
-  span.style.color = senderColor;
+  spanSender.innerHTML = sender;
+  spanContent.innerHTML = content;
+  spanHours.innerHTML = horaEnvio;
 
-  div.appendChild(span);
-
-  span.innerHTML = sender;
-  div.innerHTML += content;
+  div.appendChild(spanSender);
+  div.appendChild(spanContent);
+  div.appendChild(spanHours);
 
   return div;
 };
@@ -67,12 +80,12 @@ const scrollScreen = () => {
 };
 
 const processMessage = ({ data }) => {
-  const { userId, userName, userColor, content } = JSON.parse(data);
+  const { userId, userName, userColor, content, horaEnvio } = JSON.parse(data);
 
   const message =
     userId == user.id
-      ? creatMessageSelf(content)
-      : creatMessageOther(content, userName, userColor);
+      ? creatMessageSelf(content, horaEnvio)
+      : creatMessageOther(content, userName, userColor, horaEnvio);
 
   chatMessages.appendChild(message);
 
@@ -96,10 +109,13 @@ const handleLogin = (event) => {
 const sendMessage = (event) => {
   event.preventDefault();
 
+  const horaEnvio = formatHoraEnvio(new Date());
+
   const message = {
     userId: user.id,
     userName: user.name,
     userColor: user.color,
+    horaEnvio: horaEnvio,
     content: chatInput.value,
   };
 
