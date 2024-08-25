@@ -12,10 +12,8 @@
 }
 
 body {
-  background: url(./assets/background2.png);
-  background-repeat: no-repeat;
-  color: #ffffff;
-  background-position: center;
+  background-color: #fff;
+  color: black;
 }
 
 .header_message {
